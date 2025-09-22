@@ -27,6 +27,16 @@ public class TodoService {
         return null;
     }
 
+    public static Todo getTodoById(int id) {
+        for (Todo todo : todos) {
+            if (todo.getId() == id) {
+                return todo;
+            }
+        }
+
+        return null;
+    }
+
     public static ArrayList<Todo> getTodos() {
         return todos;
     }

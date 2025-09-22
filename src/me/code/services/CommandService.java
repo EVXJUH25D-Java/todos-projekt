@@ -1,8 +1,6 @@
 package me.code.services;
 
-import me.code.commands.CreateTodoCommand;
-import me.code.commands.DeleteTodoCommand;
-import me.code.commands.ListTodosCommand;
+import me.code.commands.*;
 
 import java.util.Scanner;
 
@@ -14,8 +12,8 @@ public class CommandService {
         System.out.println("list-todos - List all created todos");
         System.out.println("create-todo - Create and save a new todo");
         System.out.println("delete-todo - Remove todos");
-        System.out.println("complete-todo - Mark a todo as completed");
         System.out.println("start-todo - Mark a todo as in-progress");
+        System.out.println("complete-todo - Mark a todo as completed");
         System.out.println("edit-todo - Edit todos");
         System.out.println("exit - Exit the application");
 
@@ -27,7 +25,11 @@ public class CommandService {
                 return;
             }
 
-            executeCommand(commandInput);
+            try {
+                executeCommand(commandInput);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
     }
 
@@ -38,6 +40,10 @@ public class CommandService {
             ListTodosCommand.execute();
         } else if (commandInput.equalsIgnoreCase("delete-todo")) {
             DeleteTodoCommand.execute();
+        } else if (commandInput.equalsIgnoreCase("start-todo")) {
+            StartTodoCommand.execute();
+        } else if (commandInput.equalsIgnoreCase("complete-todo")) {
+            CompleteTodoCommand.execute();
         }
     }
 }

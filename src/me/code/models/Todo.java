@@ -22,7 +22,7 @@ public class Todo {
         this.deadline = deadline;
         this.category = category;
         this.priority = priority;
-        this.status = TodoStatus.UNSTARTED;
+        this.status = TodoStatus.PENDING;
     }
 
     @Override

@@ -1,7 +1,7 @@
 package me.code.models;
 
 public enum TodoStatus {
-    UNSTARTED("unstarted"),
+    PENDING("pending"),
     IN_PROGRESS("in-progress"),
     COMPLETED("completed");
 

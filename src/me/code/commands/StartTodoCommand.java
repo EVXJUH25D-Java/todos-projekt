@@ -1,10 +1,11 @@
 package me.code.commands;
 
 import me.code.models.Todo;
+import me.code.models.TodoStatus;
 import me.code.services.TodoService;
 import me.code.utility.CommandHelper;
 
-public class DeleteTodoCommand {
+public class StartTodoCommand {
 
     public static void execute() {
         int todoId = CommandHelper.queryTodoId();
@@ -12,11 +13,12 @@ public class DeleteTodoCommand {
             return;
         }
 
-        Todo todo = TodoService.removeTodoById(todoId);
+        Todo todo = TodoService.getTodoById(todoId);
         if (todo == null) {
             System.out.println("No such todo was found.");
         } else {
-            System.out.println("Deleted todo with title '" + todo.getTitle() + "'");
+            todo.setStatus(TodoStatus.IN_PROGRESS);
+            System.out.println("Todo '" + todo.getTitle() + "' is now in-progress.");
         }
     }
 }
