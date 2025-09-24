@@ -53,7 +53,11 @@ public class CreateTodoCommand {
         }
 
         Todo todo = new Todo(title, deadline, category, priority);
-        TodoService.addTodo(todo);
-        System.out.println("Todo '" + title + "' has been created!");
+        try {
+            TodoService.addTodo(todo);
+            System.out.println("Todo '" + title + "' has been created!");
+        } catch (Exception exception) {
+            System.out.println("An error occurred, message: " + exception.getMessage());
+        }
     }
 }

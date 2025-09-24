@@ -7,9 +7,8 @@ import java.util.UUID;
 public class Todo {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-    private static int ID_COUNTER = 0;
 
-    private final int id;
+    private final UUID id;
     private String title;
     private Date deadline;
     private String category;
@@ -17,12 +16,21 @@ public class Todo {
     private int priority;
 
     public Todo(String title, Date deadline, String category, int priority) {
-        this.id = ID_COUNTER++;
+        this.id = UUID.randomUUID();
         this.title = title;
         this.deadline = deadline;
         this.category = category;
         this.priority = priority;
         this.status = TodoStatus.PENDING;
+    }
+
+    public Todo(UUID id, String title, Date deadline, String category, int priority, TodoStatus status) {
+        this.id = id;
+        this.title = title;
+        this.deadline = deadline;
+        this.category = category;
+        this.priority = priority;
+        this.status = status;
     }
 
     @Override
@@ -75,7 +83,7 @@ public class Todo {
         this.priority = priority;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 }

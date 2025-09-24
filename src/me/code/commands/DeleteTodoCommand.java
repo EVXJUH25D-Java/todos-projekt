@@ -4,15 +4,24 @@ import me.code.models.Todo;
 import me.code.services.TodoService;
 import me.code.utility.CommandHelper;
 
+import java.util.UUID;
+
 public class DeleteTodoCommand {
 
     public static void execute() {
-        int todoId = CommandHelper.queryTodoId();
-        if (todoId == -1) {
+        UUID todoId = CommandHelper.queryTodoId();
+        if (todoId == null) {
             return;
         }
 
-        Todo todo = TodoService.removeTodoById(todoId);
+        Todo todo;
+        try {
+            todo = TodoService.removeTodoById(todoId);
+        } catch (Exception exception) {
+            System.out.println("An error occurred, message: " + exception.getMessage());
+            return;
+        }
+
         if (todo == null) {
             System.out.println("No such todo was found.");
         } else {

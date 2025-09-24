@@ -1,7 +1,11 @@
 package me.code;
 
+import me.code.models.Todo;
 import me.code.services.CommandService;
+import me.code.services.TodoRepository;
 import me.code.services.TodoService;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -19,7 +23,8 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        TodoService.populateTodos();
+        ArrayList<Todo> todos = TodoRepository.loadTodosFromFile();
+        TodoService.loadTodos(todos);
 
         CommandService commandService = new CommandService();
         commandService.start();

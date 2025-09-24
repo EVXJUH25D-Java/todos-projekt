@@ -2,21 +2,20 @@ package me.code.utility;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class CommandHelper {
 
-    public static int queryTodoId() {
+    public static UUID queryTodoId() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter ID of todo: ");
 
-        int id;
         try {
-            id = scanner.nextInt();
-            scanner.nextLine();
-            return id;
-        } catch (InputMismatchException exception) {
-            System.out.println("The id must be a valid number.");
-            return -1;
+            String id = scanner.nextLine();
+            return UUID.fromString(id);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("The id must be a valid UUID.");
+            return null;
         }
     }
 
